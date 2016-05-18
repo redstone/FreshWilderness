@@ -24,12 +24,14 @@ public class Config extends JSONConf<Config> {
 	public boolean resetEvenIfPlayerInChunk = false;
 	
 	// What materials should we move from the chunk when it resets
-	public List<Material> removeMaterialsOnRegen = Utils.toList(
+	public List<String> removeMaterialsOnRegen = Utils.toList(
 		Material.DIAMOND_ORE,
 		Material.EMERALD_ORE,
 		Material.MOB_SPAWNER,
 		Material.CHEST
 	);
+	
+	public boolean dontLogIfFactionNearby = true;
 
 	// -------------------------------------------------- //
 	// CONSTRUCT  

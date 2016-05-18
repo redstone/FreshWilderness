@@ -63,6 +63,21 @@ public class FreshWilderness extends JavaPlugin implements Listener {
 		if (faction == null) return;
 		if ( ! faction.isNone()) return;
 		
+		if (Config.get().dontLogIfFactionNearby) {
+			for (int x = chunk.getX() - 1 ; x < 1 ; x = x + 15) {
+				for (int z =  chunk.getZ() - 1 ; z < 1 ; z = z + 15) {
+					if (Math.sqrt(x*x + z*z) < (double) 1) {
+						Faction nextFaction = Factions.getFactionAt(chunk.getWorld().getChunkAt(x, z));
+						if (nextFaction == null) continue;
+						if (nextFaction.isNone()) continue;
+						
+						// We found a faction, stop here 
+						return;
+					}
+				}
+			}
+		}
+		
 		String key = chunk.getX() + ":" + chunk.getZ();
 		
 		WildernessLog log = WildernessLog.get(chunk.getWorld());

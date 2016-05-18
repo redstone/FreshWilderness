@@ -7,11 +7,11 @@ import org.bukkit.Material;
 
 public class Utils {
 
-	public static List<Material> toList(Material... items) {
-		List<Material> finalList = new ArrayList<Material>();
+	public static List<String> toList(Material... items) {
+		List<String> finalList = new ArrayList<String>();
 		
 		for(Material item : items) {
-			finalList.add(item);
+			finalList.add(item.name());
 		}
 		
 		return finalList;
