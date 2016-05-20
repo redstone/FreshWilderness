@@ -1,4 +1,4 @@
-package me.markeh.ffw;
+package me.markeh.ffw.store;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,14 +10,18 @@ import java.util.Map;
 import org.bukkit.World;
 
 import me.markeh.factionsframework.jsonconf.JSONConf;
+import me.markeh.ffw.FreshWilderness;
 
 public class WildernessLog extends JSONConf<WildernessLog> {
 
 	// -------------------------------------------------- //
-	// FIELDS  
+	// CONFIG OPTIONS  
 	// -------------------------------------------------- //
 	
+	// uid of world
 	public String uid;
+	
+	// chunk ids and their last update times
 	public Map<String, Long> chunks = new HashMap<String, Long>();
 	
 	// -------------------------------------------------- //
@@ -42,8 +46,6 @@ public class WildernessLog extends JSONConf<WildernessLog> {
 		return new ArrayList<WildernessLog>(logsMap.values());
 	}
 	
-	private transient Path dataPath;
-	private transient String worldId;
 	private WildernessLog(String worldId) {
 		this.worldId = worldId;
 		
@@ -58,6 +60,17 @@ public class WildernessLog extends JSONConf<WildernessLog> {
 			e.printStackTrace();
 		}
 	}
+	
+	// -------------------------------------------------- //
+	// FIELDS  
+	// -------------------------------------------------- //
+	
+	private transient Path dataPath;
+	private transient String worldId;
+	
+	// -------------------------------------------------- //
+	// METHODS  
+	// -------------------------------------------------- //
 	
 	public void save() {
 		if (this.dataPath == null) return;
