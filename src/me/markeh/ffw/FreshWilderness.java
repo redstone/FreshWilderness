@@ -18,6 +18,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import me.markeh.factionsframework.entities.Faction;
 import me.markeh.factionsframework.entities.Factions;
+import me.markeh.ffw.integrations.AbstractIgnition;
+import me.markeh.ffw.integrations.Integrations;
+import me.markeh.ffw.integrations.factions.FactionsIgnition;
 import me.markeh.ffw.regentask.RegenTask;
 import me.markeh.ffw.store.Config;
 import me.markeh.ffw.store.WildernessLog;
@@ -46,6 +49,9 @@ public class FreshWilderness extends JavaPlugin implements Listener {
 	public void onEnable() {
 		Config.get().load();
 		Config.get().save();
+
+		// Add our integrations
+		Integrations.get().addIntegration(FactionsIgnition.get(), true);
 		
 		this.getServer().getPluginManager().registerEvents(this, this);
 		
@@ -126,6 +132,16 @@ public class FreshWilderness extends JavaPlugin implements Listener {
 				if ( ! Config.get().resetEvenIfPlayerInChunk) {
 					// found players, so lets skip this chunk for now - we'll check in the next round
 					if (chPlayers.size() > 0) continue;
+				}
+				
+				// Check if any integration wants us to stop
+				for (AbstractIgnition intergration : Integrations.get().getEnabled()) {
+					if ( ! intergration.getEngine().shouldReset(ch)) return;
+				}
+				
+				// Run our resets
+				for (AbstractIgnition intergration : Integrations.get().getEnabled()) {
+					if ( ! intergration.getEngine().runReset(ch)) return;
 				}
 				
 				// Remove it from the log

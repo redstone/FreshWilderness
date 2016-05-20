@@ -1,23 +1,20 @@
 package me.markeh.ffw.integrations.factions;
 
-import org.bukkit.Bukkit;
+import org.bukkit.Chunk;
 
 import me.markeh.ffw.integrations.AbstractEngine;
-import me.markeh.ffw.integrations.AbstractIgnition;
 
-public class FactionsEngine extends AbstractIgnition {
+public class FactionsEngine extends AbstractEngine {
 
-	public FactionsEngine() {
-		this.setPluginName("Factions");
-	}
-	
 	@Override
-	public Boolean isEnabled() {
-		return Bukkit.getPluginManager().isPluginEnabled("FactionsFramework");
+	public Boolean shouldReset(Chunk chunk) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public AbstractEngine getEngine() {
+	public Boolean runReset(Chunk chunk) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
