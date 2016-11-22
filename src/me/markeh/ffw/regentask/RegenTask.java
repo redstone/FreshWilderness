@@ -22,6 +22,11 @@ public abstract class RegenTask implements Runnable {
 		} catch (Exception e) {}
 		
 		try {
+			Class.forName("org.bukkit.craftbukkit.v1_9_R2.CraftWorld");
+			return new RegenTask_v1_9_R2(chunk);
+		} catch (Exception e) {}
+		
+		try {
 			Class.forName("org.bukkit.craftbukkit.v1_9_R1.CraftWorld");
 			return new RegenTask_v1_9_R1(chunk);
 		} catch (Exception e) {}
