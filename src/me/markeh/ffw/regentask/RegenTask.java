@@ -17,6 +17,11 @@ public abstract class RegenTask implements Runnable {
 	
 	public static RegenTask get(Chunk chunk) {
 		try {
+			Class.forName("net.minecraft.server.v1_11_R1.World");
+			return new RegenTask_v1_11_R1(chunk);
+		} catch (Exception e) {}
+		
+		try {
 			Class.forName("net.minecraft.server.v1_10_R1.World");
 			return new RegenTask_v1_10_R1(chunk);
 		} catch (Exception e) {}
