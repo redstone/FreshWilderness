@@ -16,7 +16,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import me.markeh.ffw.integrations.AbstractIgnition;
+import me.markeh.ffw.integrations.Ignition;
 import me.markeh.ffw.integrations.Integrations;
 import me.markeh.ffw.integrations.factions.FactionsIgnition;
 import me.markeh.ffw.regentask.RegenTask;
@@ -116,12 +116,12 @@ public class FreshWilderness extends JavaPlugin implements Listener {
 				}
 				
 				// Check if any integration wants us to stop
-				for (AbstractIgnition intergration : Integrations.get().getEnabled()) {
+				for (Ignition intergration : Integrations.get().getEnabled()) {
 					if ( ! intergration.getEngine().shouldReset(ch)) return;
 				}
 				
 				// Run our resets
-				for (AbstractIgnition intergration : Integrations.get().getEnabled()) {
+				for (Ignition intergration : Integrations.get().getEnabled()) {
 					if ( ! intergration.getEngine().runReset(ch)) return;
 				}
 				

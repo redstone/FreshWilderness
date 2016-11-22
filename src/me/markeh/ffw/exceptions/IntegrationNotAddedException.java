@@ -1,18 +1,18 @@
 package me.markeh.ffw.exceptions;
 
-import me.markeh.ffw.integrations.AbstractIgnition;
+import me.markeh.ffw.integrations.Ignition;
 
 public class IntegrationNotAddedException extends Exception {
 	
 	private static final long serialVersionUID = 288580222293888226L;
 	
-	public IntegrationNotAddedException(AbstractIgnition ignition) {
+	public IntegrationNotAddedException(Ignition ignition) {
 		this.ignition = ignition;
 	}
 	
-	private AbstractIgnition ignition;
+	private Ignition ignition;
 
-	public AbstractIgnition getIgnition() {
+	public Ignition getIgnition() {
 		return this.ignition;
 	}
 	

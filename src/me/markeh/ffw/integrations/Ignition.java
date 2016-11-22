@@ -1,6 +1,6 @@
 package me.markeh.ffw.integrations;
 
-public abstract class AbstractIgnition {
+public abstract class Ignition {
 
 	private String pluginName;
 	
@@ -14,7 +14,7 @@ public abstract class AbstractIgnition {
 	
 	public abstract Boolean isEnabled();
 	
-	public abstract AbstractEngine getEngine();
+	public abstract Engine getEngine();
 	
 	public void onIgnitionEnabled() { }
 	

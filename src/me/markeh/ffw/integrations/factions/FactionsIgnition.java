@@ -2,10 +2,10 @@ package me.markeh.ffw.integrations.factions;
 
 import org.bukkit.Bukkit;
 
-import me.markeh.ffw.integrations.AbstractEngine;
-import me.markeh.ffw.integrations.AbstractIgnition;
+import me.markeh.ffw.integrations.Engine;
+import me.markeh.ffw.integrations.Ignition;
 
-public class FactionsIgnition extends AbstractIgnition {
+public class FactionsIgnition extends Ignition {
 
 	private static FactionsIgnition i = new FactionsIgnition();
 	public static FactionsIgnition get() { return i; }
@@ -22,7 +22,7 @@ public class FactionsIgnition extends AbstractIgnition {
 	}
 
 	@Override
-	public AbstractEngine getEngine() {
+	public Engine getEngine() {
 		if (this.engine == null) {
 			this.engine = new FactionsEngine();
 		}

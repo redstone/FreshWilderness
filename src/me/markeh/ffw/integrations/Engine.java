@@ -2,7 +2,7 @@ package me.markeh.ffw.integrations;
 
 import org.bukkit.Chunk;
 
-public abstract class AbstractEngine {
+public abstract class Engine {
 
 	public abstract Boolean shouldReset(Chunk chunk);
 	

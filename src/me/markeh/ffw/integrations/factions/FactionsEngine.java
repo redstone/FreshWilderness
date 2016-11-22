@@ -4,10 +4,10 @@ import org.bukkit.Chunk;
 
 import me.markeh.factionsframework.entities.Faction;
 import me.markeh.factionsframework.entities.Factions;
-import me.markeh.ffw.integrations.AbstractEngine;
+import me.markeh.ffw.integrations.Engine;
 import me.markeh.ffw.store.Config;
 
-public class FactionsEngine extends AbstractEngine {
+public class FactionsEngine extends Engine {
 
 	@Override
 	public Boolean shouldReset(Chunk chunk) {
