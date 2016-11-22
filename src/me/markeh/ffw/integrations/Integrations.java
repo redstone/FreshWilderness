@@ -3,6 +3,8 @@ package me.markeh.ffw.integrations;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Chunk;
+
 import me.markeh.ffw.exceptions.IntegrationNotAddedException;
 
 public class Integrations {
@@ -71,6 +73,16 @@ public class Integrations {
 	
 	public List<AbstractIgnition> getDisabled() {
 		return new ArrayList<AbstractIgnition>(this.disabledIntegrations);
+	}
+	
+	public Boolean shouldLogAt(Chunk chunk) {
+		for (AbstractIgnition integration : this.enabledIntegrations) {
+			if (integration.getEngine().shouldLogAt(chunk)) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 }

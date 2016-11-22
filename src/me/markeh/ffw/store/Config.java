@@ -34,7 +34,7 @@ public class Config extends JSONConf<Config> {
 	);
 	
 	// Don't log if there is a faction in a chunk nearby
-	public boolean dontLogIfFactionNearby = true;
+	public boolean dontLogIfClaimNearby = true;
 	
 	// Remove entities from the chunk when it is regenerated
 	public boolean removeEntitiesOnRegen = true;

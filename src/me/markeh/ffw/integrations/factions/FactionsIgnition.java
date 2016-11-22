@@ -14,6 +14,8 @@ public class FactionsIgnition extends AbstractIgnition {
 		this.setPluginName("Factions");
 	}
 	
+	private FactionsEngine engine = null;
+	
 	@Override
 	public Boolean isEnabled() {
 		return Bukkit.getPluginManager().isPluginEnabled("FactionsFramework");
@@ -21,7 +23,11 @@ public class FactionsIgnition extends AbstractIgnition {
 
 	@Override
 	public AbstractEngine getEngine() {
-		return null;
+		if (this.engine == null) {
+			this.engine = new FactionsEngine();
+		}
+		
+		return this.engine;
 	}
 
 }

@@ -8,4 +8,6 @@ public abstract class AbstractEngine {
 	
 	public abstract Boolean runReset(Chunk chunk);
 	
+	public abstract Boolean shouldLogAt(Chunk chunk);
+	
 }
