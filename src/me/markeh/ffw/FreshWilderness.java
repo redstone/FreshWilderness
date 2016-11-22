@@ -20,6 +20,7 @@ import me.markeh.ffw.exceptions.IntegrationNotAddedException;
 import me.markeh.ffw.integrations.Ignition;
 import me.markeh.ffw.integrations.Integrations;
 import me.markeh.ffw.integrations.factions.FactionsIgnition;
+import me.markeh.ffw.integrations.towny.TownyIgnition;
 import me.markeh.ffw.regentask.RegenTask;
 import me.markeh.ffw.store.Config;
 import me.markeh.ffw.store.WildernessLog;
@@ -51,6 +52,7 @@ public class FreshWilderness extends JavaPlugin implements Listener {
 
 		// Add our integrations
 		Integrations.get().addIntegration(FactionsIgnition.get(), true);
+		Integrations.get().addIntegration(TownyIgnition.get(), true);
 		
 		this.getServer().getPluginManager().registerEvents(this, this);
 		
