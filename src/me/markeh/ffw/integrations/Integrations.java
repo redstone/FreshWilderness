@@ -1,6 +1,7 @@
 package me.markeh.ffw.integrations;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.bukkit.Chunk;
@@ -20,7 +21,6 @@ public class Integrations {
 	}
 	
 	public void addIntegration(Ignition iginition, Boolean autoEnable) {
-		
 		if (autoEnable) {
 			if (iginition.isEnabled()) {
 				this.enabledIntegrations.add(iginition);
@@ -68,11 +68,11 @@ public class Integrations {
 	}
 	
 	public List<Ignition> getEnabled() {
-		return new ArrayList<Ignition>(this.enabledIntegrations);
+		return Collections.unmodifiableList(new ArrayList<Ignition>(this.enabledIntegrations));
 	}
 	
 	public List<Ignition> getDisabled() {
-		return new ArrayList<Ignition>(this.disabledIntegrations);
+		return Collections.unmodifiableList(new ArrayList<Ignition>(this.disabledIntegrations));
 	}
 	
 	public Boolean shouldLogAt(Chunk chunk) {
