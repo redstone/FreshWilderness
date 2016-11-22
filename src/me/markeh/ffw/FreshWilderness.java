@@ -16,6 +16,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import me.markeh.ffw.exceptions.IntegrationNotAddedException;
 import me.markeh.ffw.integrations.Ignition;
 import me.markeh.ffw.integrations.Integrations;
 import me.markeh.ffw.integrations.factions.FactionsIgnition;
@@ -70,6 +71,15 @@ public class FreshWilderness extends JavaPlugin implements Listener {
 		}
 		
 		HandlerList.unregisterAll((Listener) this); 
+		
+		// we can safely go over this list as it is a copy
+		for (Ignition ignition : Integrations.get().getEnabled()) {
+			try {
+				Integrations.get().disable(ignition);
+			} catch (IntegrationNotAddedException e) {
+				// don't really need to worry about it
+			}
+		}
 	}
 	
 	@EventHandler
