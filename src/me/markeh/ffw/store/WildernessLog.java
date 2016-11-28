@@ -9,7 +9,6 @@ import java.util.Map;
 
 import org.bukkit.World;
 
-import me.markeh.factionsframework.jsonconf.JSONConf;
 import me.markeh.ffw.FreshWilderness;
 
 public class WildernessLog extends JSONConf<WildernessLog> {

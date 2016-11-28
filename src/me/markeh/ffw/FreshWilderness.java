@@ -16,6 +16,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import me.markeh.ffw.exceptions.IntegrationNotAddedException;
 import me.markeh.ffw.integrations.Ignition;
 import me.markeh.ffw.integrations.Integrations;
@@ -40,6 +43,7 @@ public class FreshWilderness extends JavaPlugin implements Listener {
 	// -------------------------------------------------- //
 	
 	private int taskid;
+	private Gson gson = new GsonBuilder().setPrettyPrinting().create();
 	
 	// -------------------------------------------------- //
 	// METHODS  
@@ -147,6 +151,10 @@ public class FreshWilderness extends JavaPlugin implements Listener {
 			
 			log.save();
 		}
+	}
+	
+	public final Gson getGson() {
+		return this.gson;
 	}
 	
 }

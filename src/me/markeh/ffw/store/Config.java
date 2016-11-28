@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.bukkit.Material;
 
-import me.markeh.factionsframework.jsonconf.JSONConf;
 import me.markeh.ffw.FreshWilderness;
 import me.markeh.ffw.Utils;
 
