@@ -5,7 +5,7 @@ import org.bukkit.Bukkit;
 import me.markeh.ffw.integrations.Engine;
 import me.markeh.ffw.integrations.Ignition;
 
-public class TownyIgnition  extends Ignition {
+public class TownyIgnition extends Ignition {
 
 	private static TownyIgnition i = new TownyIgnition();
 	public static TownyIgnition get() { return i; }
