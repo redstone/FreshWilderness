@@ -1,7 +1,7 @@
-main: me.markeh.ffw.FreshWilderness
+main: net.redstoneore.freshwilderness.FreshWilderness
 name: FreshWilderness
 version: 1.3.0
-website: http://ma.rkhugh.es/freshwilderness
+website: http://redstoneore.net/freshwilderness
 authors: [ MarkehMe ]
-description: §eFresh Wilderness keeps your wilderness fresh.§aMarkehMe §eis the lead programmer. See §bhttp://ma.rkhugh.es/freshwilderness§e for more information.
-softdepend: [ FactionsFramework ]
+description: §eFresh Wilderness keeps your wilderness fresh.§aMarkehMe §eis the lead programmer. See §bhttp://ma.rkhugh.es/redstoneore.net§e for more information.
+softdepend: [ FactionsFramework, Kingdoms, Landlord, Townships, Towny, WorldGuard ]
