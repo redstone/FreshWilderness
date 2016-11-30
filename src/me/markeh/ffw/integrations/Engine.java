@@ -1,8 +1,9 @@
 package me.markeh.ffw.integrations;
 
 import org.bukkit.Chunk;
+import org.bukkit.event.Listener;
 
-public abstract class Engine {
+public abstract class Engine implements Listener {
 
 	// ----------------------------------------
 	// ABSTRACT METHODS

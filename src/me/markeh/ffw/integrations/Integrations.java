@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
+import org.bukkit.event.HandlerList;
 
+import me.markeh.ffw.FreshWilderness;
 import me.markeh.ffw.exceptions.IntegrationNotAddedException;
 
 public class Integrations {
@@ -41,6 +44,7 @@ public class Integrations {
 		if (this.disabledIntegrations.contains(iginition)) {
 			this.disabledIntegrations.remove(iginition);
 			this.enabledIntegrations.add(iginition);
+			Bukkit.getServer().getPluginManager().registerEvents(iginition.getEngine(), FreshWilderness.get());
 			iginition.onIgnitionEnabled();
 			return;
 		}
@@ -56,6 +60,7 @@ public class Integrations {
 		if (this.enabledIntegrations.contains(iginition)) {
 			this.enabledIntegrations.remove(iginition);
 			this.disabledIntegrations.add(iginition);
+			HandlerList.unregisterAll(iginition.getEngine());
 			iginition.onIgnitionDisabled();
 			return;
 		}
