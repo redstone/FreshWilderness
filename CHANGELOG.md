@@ -1,6 +1,6 @@
 # 1.4.0
 
-* An FAQ has been added to the wiki: https://github.com/MarkehMe/FreshWilderness/wiki/faq
+* An FAQ has been added to the wiki: https://github.com/redstone/FreshWilderness/wiki/faq
 * Now checks chunks when they're unclaimed
 * WorldGuard Support
 * Landlord Support
@@ -15,6 +15,11 @@
 # 1.2.0
 
 * Added support for 1.11
+
+# 1.1.0
+
+* Internal improvements
+* Adding support for MC 1.10
 
 # 1.0.0
 
