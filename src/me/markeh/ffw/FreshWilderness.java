@@ -24,8 +24,10 @@ import me.markeh.ffw.integrations.Ignition;
 import me.markeh.ffw.integrations.Integrations;
 import me.markeh.ffw.integrations.factions.FactionsIgnition;
 import me.markeh.ffw.integrations.kingdoms.KingdomsIgnition;
+import me.markeh.ffw.integrations.landlord.LandlordIgnition;
 import me.markeh.ffw.integrations.townships.TownshipsIgnition;
 import me.markeh.ffw.integrations.towny.TownyIgnition;
+import me.markeh.ffw.integrations.worldguard.WorldGuardIgnition;
 import me.markeh.ffw.regentask.RegenTask;
 import me.markeh.ffw.store.Config;
 import me.markeh.ffw.store.WildernessLog;
@@ -61,6 +63,8 @@ public class FreshWilderness extends JavaPlugin implements Listener {
 		Integrations.get().addIntegration(TownyIgnition.get(), true);
 		Integrations.get().addIntegration(TownshipsIgnition.get(), true);
 		Integrations.get().addIntegration(KingdomsIgnition.get(), true);
+		Integrations.get().addIntegration(WorldGuardIgnition.get(), true);
+		Integrations.get().addIntegration(LandlordIgnition.get(), true);
 		
 		this.getServer().getPluginManager().registerEvents(this, this);
 		
@@ -98,6 +102,10 @@ public class FreshWilderness extends JavaPlugin implements Listener {
 		
 		Chunk chunk = event.getBlock().getChunk();
 		
+		this.logChunk(chunk);
+	}
+	
+	public void logChunk(Chunk chunk) {		
 		if ( ! Integrations.get().shouldLogAt(chunk)) return;
 		
 		String key = chunk.getX() + ":" + chunk.getZ();
