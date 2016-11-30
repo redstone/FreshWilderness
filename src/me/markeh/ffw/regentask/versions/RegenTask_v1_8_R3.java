@@ -28,4 +28,9 @@ public class RegenTask_v1_8_R3 extends RegenTask {
 		chunk.a(bp, ibd);
 	}
 
+	@Override
+	public void regenerateChunk(World world, int x, int z) {
+		world.regenerateChunk(x, z);
+	}
+
 }

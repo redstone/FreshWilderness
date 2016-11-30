@@ -4,7 +4,6 @@ import org.bukkit.Chunk;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_7_R4.CraftWorld;
 import net.minecraft.server.v1_7_R4.Block;
-
 import me.markeh.ffw.regentask.RegenTask;
 
 public class RegenTask_v1_7_R4 extends RegenTask {
@@ -21,6 +20,12 @@ public class RegenTask_v1_7_R4 extends RegenTask {
 		chunk.a(x & 0x0f, y, z & 0x0f, Block.getById(blockId), data);
 		 
 		w.notify(x, y, z);
+	}
+
+	@Override
+	public void regenerateChunk(World world, int x, int z) {
+		world.regenerateChunk(x, z);
+		
 	}
 
 }

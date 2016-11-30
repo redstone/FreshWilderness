@@ -26,5 +26,10 @@ public class RegenTask_v1_10_R1 extends RegenTask {
 		IBlockData ibd = net.minecraft.server.v1_10_R1.Block.getByCombinedId(combined);
 		chunk.a(bp, ibd);
 	}
+
+	@Override
+	public void regenerateChunk(World world, int x, int z) {
+		world.regenerateChunk(x, z);		
+	}
 	
 }

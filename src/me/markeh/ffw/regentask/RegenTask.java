@@ -70,7 +70,7 @@ public abstract class RegenTask implements Runnable {
 		World world = this.chunk.getWorld();
 		
 		// Regenerate the chunk
-		world.regenerateChunk(this.chunk.getX(), this.chunk.getZ());
+		this.regenerateChunk(world, this.chunk.getX(), this.chunk.getZ());
 		
 		// If required, go through the chunks and remove any blocks
 		if ( ! Config.get().removeMaterialsOnRegen.isEmpty()) {
@@ -130,4 +130,5 @@ public abstract class RegenTask implements Runnable {
 
 	public abstract void setBlockFast(World world, int x, int y, int z, int blockId, byte data);
 	
+	public abstract void regenerateChunk(World world, int x, int z); 
 }
