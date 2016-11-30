@@ -8,6 +8,7 @@ import org.bukkit.Material;
 
 import me.markeh.ffw.FreshWilderness;
 import me.markeh.ffw.Utils;
+import net.minecraft.util.com.google.common.collect.Lists;
 
 public class Config extends JSONConf<Config> {
 	
@@ -42,6 +43,9 @@ public class Config extends JSONConf<Config> {
 	public List<String> excludeEntitiesOnRegen = Utils.toList(
 		"PLAYER"
 	);
+	
+	// Should we log a chunk when it is unclaimed
+	public Boolean logWhenUnclaimed = true;
 		
 	// How long should be delay be before the chunk is reset
 	public int secondsBeforeReset = 0;
@@ -52,6 +56,13 @@ public class Config extends JSONConf<Config> {
 	// The message to send to players
 	public String notifiyMessage = "This chunk is being reset! Please move away.";
 	
+	// -------------------------------------------------- //
+	// PLUGIN SPECIFIC  
+	// -------------------------------------------------- //
+	// these fields only apply to certain plugins
+	
+	public List<String> worldGuardIgnoreRegions = Lists.newArrayList("__global__");
+		
 	// -------------------------------------------------- //
 	// CONSTRUCT  
 	// -------------------------------------------------- //
