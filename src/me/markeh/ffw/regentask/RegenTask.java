@@ -112,6 +112,7 @@ public abstract class RegenTask implements Runnable {
 							}
 						}.prepareBlockFast(this,world, xx, yy, zz, 0, (byte) 0));
 						
+						// TODO: investigate if using nms methods would be faster
 						world.refreshChunk(chunk.getX(), chunk.getZ());
 					}
 				}

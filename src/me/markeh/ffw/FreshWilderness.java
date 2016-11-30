@@ -66,8 +66,10 @@ public class FreshWilderness extends JavaPlugin implements Listener {
 		Integrations.get().addIntegration(WorldGuardIgnition.get(), true);
 		Integrations.get().addIntegration(LandlordIgnition.get(), true);
 		
+		// Register our main listener 
 		this.getServer().getPluginManager().registerEvents(this, this);
 		
+		// Start our checkChunks task
 		this.taskid = this.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
 			@Override
 			public void run() {
@@ -78,12 +80,15 @@ public class FreshWilderness extends JavaPlugin implements Listener {
 	
 	@Override
 	public void onDisable() {
+		// cancel the task
 		this.getServer().getScheduler().cancelTask(this.taskid);
 		
+		// Save our logs
 		for (WildernessLog log : WildernessLog.getAll()) {
 			log.save();
 		}
 		
+		// Unregister our main listener
 		HandlerList.unregisterAll((Listener) this); 
 		
 		// we can safely go over this list as it is a copy
