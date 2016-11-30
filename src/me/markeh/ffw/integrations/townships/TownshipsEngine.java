@@ -1,10 +1,18 @@
 package me.markeh.ffw.integrations.townships;
 
+import java.util.Set;
+
+import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
+import org.bukkit.World;
+import org.bukkit.event.EventHandler;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import com.herocraftonline.townships.Townships;
+import com.herocraftonline.townships.events.town.TownUnclaimEvent;
 import com.herocraftonline.townships.regions.RegionCoords;
 
+import me.markeh.ffw.FreshWilderness;
 import me.markeh.ffw.integrations.Engine;
 import me.markeh.ffw.store.Config;
 
@@ -40,10 +48,29 @@ public class TownshipsEngine extends Engine {
 		return true;
 	}
 	
-	private boolean isClaimed(Chunk chunk) {		
+	private Boolean isClaimed(Chunk chunk) {		
 		RegionCoords regionCoords = new RegionCoords(chunk.getX(), chunk.getZ(), chunk.getWorld().getName());
 		
 		return Townships.regionManager.getRegion(regionCoords).hasTown();
+	}
+	
+	@EventHandler
+	private void onUnclaim(TownUnclaimEvent event) {
+		if ( ! Config.get().logWhenUnclaimed) return;
+		
+		RegionCoords coords = event.getCoords();
+		World world = Bukkit.getWorld(coords.getWorld());
+		
+		final Chunk chunk = world.getChunkAt(coords.getX(), coords.getZ());
+				
+		// Run log later
+		new BukkitRunnable() {
+			@Override
+			public void run() {
+				FreshWilderness.get().logChunk(chunk);
+				
+			}
+		}.runTaskLater(FreshWilderness.get(), 20);
 	}
 
 }

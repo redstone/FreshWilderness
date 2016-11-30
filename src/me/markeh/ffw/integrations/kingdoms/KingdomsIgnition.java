@@ -4,7 +4,8 @@ import org.bukkit.Bukkit;
 
 import me.markeh.ffw.integrations.Engine;
 import me.markeh.ffw.integrations.Ignition;
-public class KingdomsIgnition  extends Ignition {
+
+public class KingdomsIgnition extends Ignition {
 
 	private static KingdomsIgnition i = new KingdomsIgnition();
 	public static KingdomsIgnition get() { return i; }

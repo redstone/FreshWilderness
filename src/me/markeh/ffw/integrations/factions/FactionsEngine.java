@@ -1,9 +1,15 @@
 package me.markeh.ffw.integrations.factions;
 
+import java.util.Set;
+
 import org.bukkit.Chunk;
+import org.bukkit.event.EventHandler;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import me.markeh.factionsframework.entities.Faction;
 import me.markeh.factionsframework.entities.Factions;
+import me.markeh.factionsframework.event.EventFactionsChunksChange;
+import me.markeh.ffw.FreshWilderness;
 import me.markeh.ffw.integrations.Engine;
 import me.markeh.ffw.store.Config;
 
@@ -45,6 +51,26 @@ public class FactionsEngine extends Engine {
 		Faction faction = Factions.getFactionAt(chunk);
 		if (faction == null) return false;
 		return (faction.isNone());
+	}
+	
+	@EventHandler
+	public void onUnclaim(EventFactionsChunksChange event) {
+		if ( ! Config.get().logWhenUnclaimed) return;
+		
+		if ( ! event.getNewFaction().isNone()) return;
+		
+		final Set<Chunk> chunks = event.getChunks();
+		
+		// Run log later
+		new BukkitRunnable() {
+			@Override
+			public void run() {
+				for (Chunk chunk : chunks) {
+					FreshWilderness.get().logChunk(chunk);
+				}
+				
+			}
+		}.runTaskLater(FreshWilderness.get(), 20);
 	}
 
 }

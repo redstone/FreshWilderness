@@ -1,9 +1,13 @@
 package me.markeh.ffw.integrations.towny;
 
 import org.bukkit.Chunk;
+import org.bukkit.event.EventHandler;
+import org.bukkit.scheduler.BukkitRunnable;
 
+import com.palmergames.bukkit.towny.event.TownUnclaimEvent;
 import com.palmergames.bukkit.towny.object.WorldCoord;
 
+import me.markeh.ffw.FreshWilderness;
 import me.markeh.ffw.integrations.Engine;
 import me.markeh.ffw.store.Config;
 
@@ -51,6 +55,22 @@ public class TownyEngine extends Engine {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+	
+	@EventHandler
+	public void onUnclaim(TownUnclaimEvent event) {
+		if ( ! Config.get().logWhenUnclaimed) return;
+		
+		WorldCoord coord = event.getWorldCoord();
+		final Chunk chunk = coord.getBukkitWorld().getChunkAt(coord.getX(), coord.getZ());
+		
+		// Run log later
+		new BukkitRunnable() {
+			@Override
+			public void run() {
+				FreshWilderness.get().logChunk(chunk);
+			}
+		}.runTaskLater(FreshWilderness.get(), 20);
 	}
 	
 }

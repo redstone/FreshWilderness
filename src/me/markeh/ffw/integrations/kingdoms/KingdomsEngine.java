@@ -51,5 +51,7 @@ public class KingdomsEngine extends Engine {
 		
 		return true;
 	}
+	
+	// TODO: log unclaimed chunks, pending developer events
 
 }
