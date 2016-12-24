@@ -1,0 +1,62 @@
+apply plugin: 'java'
+
+repositories {
+	jcenter()
+	mavenCentral()
+	maven { url 'https://jitpack.io' }
+	maven {
+		name = 'sponge'
+		url = 'http://repo.spongepowered.org/maven'
+	}
+	maven {
+		name = 'bukkit'
+		url = 'https://hub.spigotmc.org/nexus/content/groups/public/'
+	}
+	maven { url 'http://maven.sk89q.com/repo/' }
+}
+
+dependencies {
+	compileOnly group: 'org.bukkit', name: 'bukkit', version: '1.11-R0.1-SNAPSHOT'
+	compileOnly group: 'org.bukkit', name: 'bukkit', version: '1.11-R0.1-SNAPSHOT'
+
+	dependencies {
+	    compileOnly fileTree(dir: 'libs', include: ['*.jar'])
+	}
+
+	dependencies {
+	    compileOnly fileTree(dir: 'libs/craftbukkit', include: ['*.jar'])
+	}
+
+	dependencies {
+	    compileOnly fileTree(dir: 'libs/nonfree', include: ['*.jar'])
+	}
+
+	compile fileTree(dir: 'libs/shadow', include: ['*.jar'])
+
+	compileOnly 'com.sk89q:worldguard:6.1.1-SNAPSHOT'
+	compileOnly 'com.sk89q:worldedit:6.0.0-SNAPSHOT'
+
+	compileOnly 'com.sk89q.worldguard:worldguard-legacy:6.2'
+	compileOnly 'com.sk89q.worldedit:worldedit-bukkit:6.1.5'
+
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.4'
+    }
+}
+
+apply plugin: 'com.github.johnrengelman.shadow'
+
+shadowJar {
+	dependencies {
+		include(dependency(fileTree(dir: 'libs/shadow', include: ['*.jar'])))
+	}
+	relocate "net.redstoneore.rson", "net.redstoneore.freshwilderness.lib.rson"
+}
+
+build.finalizedBy(shadowJar)

@@ -1,16 +1,19 @@
 package net.redstoneore.freshwilderness.store;
 
+import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
 import org.bukkit.Material;
 
-import net.minecraft.util.com.google.common.collect.Lists;
+import com.google.common.collect.Lists;
+
 import net.redstoneore.freshwilderness.FreshWilderness;
 import net.redstoneore.freshwilderness.Utils;
+import net.redstoneore.rson.Rson;
 
-public class Config extends JSONConf<Config> {
+public class Config extends Rson<Config> {
 	
 	// -------------------------------------------------- //
 	// FIELDS  
@@ -77,23 +80,9 @@ public class Config extends JSONConf<Config> {
 
 	private Config() {
 		this.dataPath = Paths.get(FreshWilderness.get().getDataFolder().toString(), "config.json");
-	}
-	
-	public final void load() {
-		if (this.dataPath == null) return;
-
-		try { 
-			this.loadFrom(this.dataPath);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public final void save() {
-		if (this.dataPath == null) return;
-		
+		this.setup(this.dataPath, Charset.defaultCharset());
 		try {
-			this.saveTo(dataPath);
+			this.load();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

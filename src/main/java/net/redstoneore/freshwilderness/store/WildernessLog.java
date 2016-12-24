@@ -1,5 +1,6 @@
 package net.redstoneore.freshwilderness.store;
 
+import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -10,8 +11,9 @@ import java.util.Map;
 import org.bukkit.World;
 
 import net.redstoneore.freshwilderness.FreshWilderness;
+import net.redstoneore.rson.Rson;
 
-public class WildernessLog extends JSONConf<WildernessLog> {
+public class WildernessLog extends Rson<WildernessLog> {
 
 	// -------------------------------------------------- //
 	// CONFIG OPTIONS  
@@ -51,10 +53,9 @@ public class WildernessLog extends JSONConf<WildernessLog> {
 		Path warpsFolder = Paths.get(FreshWilderness.get().getDataFolder().toString(), "data");
 		
 		dataPath = Paths.get(warpsFolder.toString(), this.worldId + ".json");
-		
-		try { 
-			this.loadFrom(dataPath);
-			this.save();
+		this.setup(this.dataPath, Charset.defaultCharset());
+		try {
+			this.load();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -66,19 +67,6 @@ public class WildernessLog extends JSONConf<WildernessLog> {
 	
 	private transient Path dataPath;
 	private transient String worldId;
-	
-	// -------------------------------------------------- //
-	// METHODS  
-	// -------------------------------------------------- //
-	
-	public void save() {
-		if (this.dataPath == null) return;
-		
-		try {
-			this.saveTo(dataPath);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+
 	
 }

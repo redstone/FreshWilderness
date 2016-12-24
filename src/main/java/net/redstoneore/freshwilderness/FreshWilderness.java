@@ -16,9 +16,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import net.redstoneore.freshwilderness.exceptions.IntegrationNotAddedException;
 import net.redstoneore.freshwilderness.integrations.Ignition;
 import net.redstoneore.freshwilderness.integrations.Integrations;
@@ -28,6 +25,8 @@ import net.redstoneore.freshwilderness.integrations.landlord.LandlordIgnition;
 import net.redstoneore.freshwilderness.integrations.townships.TownshipsIgnition;
 import net.redstoneore.freshwilderness.integrations.towny.TownyIgnition;
 import net.redstoneore.freshwilderness.integrations.worldguard.WorldGuardIgnition;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import net.redstoneore.freshwilderness.regentask.RegenTask;
 import net.redstoneore.freshwilderness.store.Config;
 import net.redstoneore.freshwilderness.store.WildernessLog;
@@ -55,10 +54,12 @@ public class FreshWilderness extends JavaPlugin implements Listener {
 	
 	@Override
 	public void onEnable() {
-		Config.get().load();
-		Config.get().save();
-
-		// Add our integrations
+		try {
+			Config.get().save();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		Integrations.get().addIntegration(FactionsIgnition.get(), true);
 		Integrations.get().addIntegration(TownyIgnition.get(), true);
 		Integrations.get().addIntegration(TownshipsIgnition.get(), true);
@@ -85,7 +86,11 @@ public class FreshWilderness extends JavaPlugin implements Listener {
 		
 		// Save our logs
 		for (WildernessLog log : WildernessLog.getAll()) {
-			log.save();
+			try {
+				log.save();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		// Unregister our main listener
@@ -166,7 +171,11 @@ public class FreshWilderness extends JavaPlugin implements Listener {
 				FreshWilderness.get().getServer().getScheduler().runTaskLater(FreshWilderness.get(), task, 1 + (20 * Config.get().secondsBeforeReset));
 			}
 			
-			log.save();
+			try {
+				log.save();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	

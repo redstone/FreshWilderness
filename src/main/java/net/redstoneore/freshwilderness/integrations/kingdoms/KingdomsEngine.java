@@ -1,10 +1,14 @@
 package net.redstoneore.freshwilderness.integrations.kingdoms;
 
 import org.bukkit.Chunk;
+import org.bukkit.event.EventHandler;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.kingdoms.constants.land.Land;
 import org.kingdoms.constants.land.SimpleChunkLocation;
+import org.kingdoms.events.LandUnclaimEvent;
 import org.kingdoms.manager.game.GameManagement;
 
+import net.redstoneore.freshwilderness.FreshWilderness;
 import net.redstoneore.freshwilderness.integrations.Engine;
 import net.redstoneore.freshwilderness.store.Config;
 
@@ -52,6 +56,19 @@ public class KingdomsEngine extends Engine {
 		return true;
 	}
 	
-	// TODO: log unclaimed chunks, pending developer events
+	@EventHandler
+	public void onLandUnclaim(LandUnclaimEvent event) {
+		if ( ! Config.get().logWhenUnclaimed) return;
+		
+		final Chunk chunk = event.getLand().getLoc().toChunk();
+
+		// Run log later
+		new BukkitRunnable() {
+			@Override
+			public void run() {
+				FreshWilderness.get().logChunk(chunk);
+			}
+		}.runTaskLater(FreshWilderness.get(), 20);
+	}
 
 }
