@@ -5,6 +5,6 @@ These jars are not suitable to be in a git repository (they're massive), and as 
 * spigot-1.9.jar
 * spigot-1.9.4.jar
 * spigot-1.10.1.jar
-* spigot-1.11.10.jar
+* spigot-1.11.jar
 
 Gradle will automatically pull in all jar files in this directory.
