@@ -72,20 +72,21 @@ public class Config extends Rson<Config> {
 	
 	private transient static Config i;
 	public static Config get() {
-		if (i == null) i = new Config();
+		if (i == null) {
+			i = new Config();
+			
+			i.dataPath = Paths.get(FreshWilderness.get().getDataFolder().toString(), "config.json");
+			i.setup(i.dataPath, Charset.defaultCharset());
+			try {
+				i.load();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
 		return i;
 	}
 	
 	private transient Path dataPath;
-
-	private Config() {
-		this.dataPath = Paths.get(FreshWilderness.get().getDataFolder().toString(), "config.json");
-		this.setup(this.dataPath, Charset.defaultCharset());
-		try {
-			this.load();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 	
 }

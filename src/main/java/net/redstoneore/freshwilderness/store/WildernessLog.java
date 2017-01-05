@@ -34,7 +34,18 @@ public class WildernessLog extends Rson<WildernessLog> {
 		String uid = world.getUID().toString();
 		
 		if ( ! logsMap.containsKey(uid)) {
-			WildernessLog log = new WildernessLog(uid);
+			WildernessLog log = new WildernessLog();
+			log.worldId = uid;
+			
+			Path warpsFolder = Paths.get(FreshWilderness.get().getDataFolder().toString(), "data");
+			
+			log.dataPath = Paths.get(warpsFolder.toString(), log.worldId + ".json");
+			log.setup(log.dataPath, Charset.defaultCharset());
+			try {
+				log.load();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			log.uid = uid;
 			
 			logsMap.put(uid, log);
@@ -47,19 +58,7 @@ public class WildernessLog extends Rson<WildernessLog> {
 		return new ArrayList<WildernessLog>(logsMap.values());
 	}
 	
-	private WildernessLog(String worldId) {
-		this.worldId = worldId;
-		
-		Path warpsFolder = Paths.get(FreshWilderness.get().getDataFolder().toString(), "data");
-		
-		dataPath = Paths.get(warpsFolder.toString(), this.worldId + ".json");
-		this.setup(this.dataPath, Charset.defaultCharset());
-		try {
-			this.load();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	public WildernessLog() { }
 	
 	// -------------------------------------------------- //
 	// FIELDS  
