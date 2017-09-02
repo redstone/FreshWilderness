@@ -2,3 +2,7 @@ build/
 bin/
 libs/nonfree/*.jar
 libs/craftbukkit/*.jar
+/.gradle/
+.project
+.classpath
+org.eclipse.buildship.core.prefs
