@@ -17,6 +17,11 @@ public abstract class RegenTask implements Runnable {
 	
 	public static RegenTask get(Chunk chunk) {
 		try {
+			Class.forName("net.minecraft.server.v1_12_R1.World");
+			return new RegenTask_v1_12_R1(chunk);
+		} catch (Exception e) {}
+		
+		try {
 			Class.forName("net.minecraft.server.v1_11_R1.World");
 			return new RegenTask_v1_11_R1(chunk);
 		} catch (Exception e) {}
@@ -112,7 +117,7 @@ public abstract class RegenTask implements Runnable {
 							}
 						}.prepareBlockFast(this,world, xx, yy, zz, 0, (byte) 0));
 						
-						// TODO: investigate if using nms methods would be faster
+						// TODO: which clients does this not work for? Is there an alternative?
 						world.refreshChunk(chunk.getX(), chunk.getZ());
 					}
 				}
