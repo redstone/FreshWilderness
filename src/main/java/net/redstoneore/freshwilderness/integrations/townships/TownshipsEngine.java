@@ -1,7 +1,5 @@
 package net.redstoneore.freshwilderness.integrations.townships;
 
-import java.util.Set;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.World;
