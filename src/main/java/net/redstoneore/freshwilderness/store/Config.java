@@ -65,7 +65,12 @@ public class Config extends Rson<Config> {
 	// these fields only apply to certain plugins
 	
 	public List<String> worldGuardIgnoreRegions = Lists.newArrayList("__global__");
-		
+	
+	// I'm not too sure how precious stones works.
+	// false = do not regenerate if there are any fields
+	// true = allow to regenerate if there is a field, but not if it is rented
+	public boolean preciousStonesClearIfFieldsNotRented = true;
+	
 	// -------------------------------------------------- //
 	// CONSTRUCT  
 	// -------------------------------------------------- //

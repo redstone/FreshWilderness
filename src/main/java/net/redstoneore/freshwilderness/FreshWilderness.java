@@ -22,6 +22,7 @@ import net.redstoneore.freshwilderness.integrations.Integrations;
 import net.redstoneore.freshwilderness.integrations.factions.FactionsIgnition;
 import net.redstoneore.freshwilderness.integrations.kingdoms.KingdomsIgnition;
 import net.redstoneore.freshwilderness.integrations.landlord.LandlordIgnition;
+import net.redstoneore.freshwilderness.integrations.preciousstones.PreciousStonesIgnition;
 import net.redstoneore.freshwilderness.integrations.townships.TownshipsIgnition;
 import net.redstoneore.freshwilderness.integrations.towny.TownyIgnition;
 import net.redstoneore.freshwilderness.integrations.worldguard.WorldGuardIgnition;
@@ -66,6 +67,7 @@ public class FreshWilderness extends JavaPlugin implements Listener {
 		Integrations.get().addIntegration(KingdomsIgnition.get(), true);
 		Integrations.get().addIntegration(WorldGuardIgnition.get(), true);
 		Integrations.get().addIntegration(LandlordIgnition.get(), true);
+		Integrations.get().addIntegration(PreciousStonesIgnition.get(), true);
 		
 		// Register our main listener 
 		this.getServer().getPluginManager().registerEvents(this, this);
