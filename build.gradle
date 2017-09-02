@@ -19,6 +19,8 @@ dependencies {
 	compileOnly group: 'org.bukkit', name: 'bukkit', version: '1.11-R0.1-SNAPSHOT'
 	compileOnly group: 'org.bukkit', name: 'bukkit', version: '1.11-R0.1-SNAPSHOT'
 
+	compileOnly group: 'com.github.redstone', name: 'LegacyFactions', version: 'v1.4.4'
+	
 	dependencies {
 	    compileOnly fileTree(dir: 'libs', include: ['*.jar'])
 	}
