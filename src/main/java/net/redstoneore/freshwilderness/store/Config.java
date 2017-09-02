@@ -71,6 +71,9 @@ public class Config extends Rson<Config> {
 	// true = allow to regenerate if there is a field, but not if it is rented
 	public boolean preciousStonesClearIfFieldsNotRented = true;
 	
+	// I'm not too sure how residence works. Set to true to include hidden.
+	public boolean residencesIncludeHidden = false;
+	
 	// -------------------------------------------------- //
 	// CONSTRUCT  
 	// -------------------------------------------------- //
